@@ -1,0 +1,21 @@
+{
+  "name": "typescript.StarterProject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jmasonlee <jmasonlee@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.2",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "readline": "^1.3.0",
+    "ts-node": "^10.0.0"
+  }
+}
