@@ -4,7 +4,7 @@ There is a bug in this code.
 
 A description of the code is shown below:
 
-##Texas Hold'em Ranker
+## Texas Hold'em Ranker
 
 A project to rank hands in a Texas Hold'em showdown
 
