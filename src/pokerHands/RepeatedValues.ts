@@ -14,8 +14,8 @@ export class RepeatedValues extends PokerHand {
     public static isFullHouse(cards: CardArray) {
         let cardValueCount: Map<number, number> = cards.countRepeatedValues()
         let is3ofAKind = [...cardValueCount.values()].includes(3);
-        let isPair = [...cardValueCount.values()].includes(2);
-        return is3ofAKind && isPair
+        const numberOfPairOrHigher = [...cardValueCount.values()].filter(c => c > 2).length
+        return is3ofAKind && numberOfPairOrHigher >= 2;
     }
 
     protected getStringRepresentationOfRankingCards(): string {
@@ -25,8 +25,9 @@ export class RepeatedValues extends PokerHand {
     protected getRankingCards(cards: CardArray): CardArray {
         let rankingCards
         if (RepeatedValues.isFullHouse(cards)) {
-            rankingCards =  [...RepeatedValues.getRankingValue(3, cards),
-                ...RepeatedValues.getRankingValue(2, cards)]
+            rankingCards = [...cards.countRepeatedValues().entries()].filter(e => {
+                    return e[1] > 2
+                }).slice(0,2)
         } else{
             rankingCards = RepeatedValues.getRankingValue(RepeatedValues.getMaxRepeatedValueCount(cards), cards)
         }
