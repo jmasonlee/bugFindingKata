@@ -5,9 +5,14 @@ import {StraightFlush} from "./StraightFlush";
 import {RoyalFlush} from "./RoyalFlush";
 import {PokerHand} from "./PokerHand";
 import {Ranker} from "../Ranker";
+import {CardArray} from "../CardArray";
 
 export class PokerHandFactory {
     public static createPokerHand(playerName: string, allCards: string[]) {
+        let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
+        if(RoyalFlush.isRoyalFlush(cards)){
+            return RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)
+        }
 
         const possibleHands: PokerHand[] = [
             RoyalFlush.makeRoyalFlushIfValid(playerName, allCards),
@@ -17,9 +22,8 @@ export class PokerHandFactory {
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
 
-        const bestHand: PokerHand = Ranker.rankHands(possibleHands)[0].pokerHands[0]
+        let bestHand: PokerHand = Ranker.rankHands(possibleHands)[0].pokerHands[0]
 
         return bestHand
     }
-
 }
