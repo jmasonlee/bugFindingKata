@@ -36,12 +36,4 @@ export class Flush extends PokerHand {
     private static occurs5OrMoreTimes(entry) {
         return 5 <= entry[1];
     }
-
-    static makeFlushIfValid(playerName: string, symbols: string[]): Flush | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(Flush.isFlush(cards.cards)){
-            return new Flush(playerName, cards)
-        }
-        return null
-    }
 }
