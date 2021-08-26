@@ -13,16 +13,12 @@ export class PokerHandFactory {
         {
             let cardsCanMakeHandType = RoyalFlush.isRoyalFlush(cards);
             let createHandType = RoyalFlush.makeRoyalFlushIfValid(playerName, allCards);
-            if (cardsCanMakeHandType) {
-                return createHandType
-            }
+            return this.makeHandIfValid(cardsCanMakeHandType, createHandType);
         }
         {
             let cardsCanMakeHandType = StraightFlush.isStraightFlush(cards);
             let createHandType = StraightFlush.makeStraightFlushIfValid(playerName, allCards);
-            if (cardsCanMakeHandType) {
-                return createHandType
-            }
+            return this.makeHandIfValid(cardsCanMakeHandType, createHandType);
         }
         const possibleHands: PokerHand[] = [
             RoyalFlush.makeRoyalFlushIfValid(playerName, allCards),
@@ -35,5 +31,12 @@ export class PokerHandFactory {
         let bestHand: PokerHand = Ranker.rankHands(possibleHands)[0].pokerHands[0]
 
         return bestHand
+    }
+
+    private static makeHandIfValid(cardsCanMakeHandType: boolean, createHandType: PokerHand) {
+        if (cardsCanMakeHandType) {
+            return createHandType
+        }
+        return null
     }
 }
