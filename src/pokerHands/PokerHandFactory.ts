@@ -13,7 +13,8 @@ export class PokerHandFactory {
         {
             let cardsCanMakeHandType = RoyalFlush.isRoyalFlush(cards);
             if (cardsCanMakeHandType) {
-                return RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)
+                let createHandType = RoyalFlush.makeRoyalFlushIfValid(playerName, allCards);
+                return createHandType
             }
         }
         {
