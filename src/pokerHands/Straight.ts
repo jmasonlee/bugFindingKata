@@ -19,11 +19,4 @@ export class Straight extends PokerHand {
         return new CardArray(cards.getCardsInSequence().cards.slice(0, 5))
     }
 
-    static makeStraightIfValid(playerName: string, symbols: string[]): Straight | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(Straight.isStraight(cards)){
-            return new Straight(playerName, cards)
-        }
-        return null
-    }
 }
