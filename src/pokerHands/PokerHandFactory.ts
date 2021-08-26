@@ -12,8 +12,8 @@ export class PokerHandFactory {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
         {
             let cardsCanMakeHandType = RoyalFlush.isRoyalFlush(cards);
+            let createHandType = RoyalFlush.makeRoyalFlushIfValid(playerName, allCards);
             if (cardsCanMakeHandType) {
-                let createHandType = RoyalFlush.makeRoyalFlushIfValid(playerName, allCards);
                 return createHandType
             }
         }
