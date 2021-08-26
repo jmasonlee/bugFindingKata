@@ -8,7 +8,7 @@ export class StraightFlush extends PokerHand {
     handName: string = 'Straight Flush'
     handType: HandType = HandType.STRAIGHT_FLUSH
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
     }
 
