@@ -13,6 +13,9 @@ export class PokerHandFactory {
         if(RoyalFlush.isRoyalFlush(cards)){
             return RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)
         }
+        if(StraightFlush.isStraightFlush(cards)) {
+            return StraightFlush.makeStraightFlushIfValid(playerName, allCards)
+        }
 
         const possibleHands: PokerHand[] = [
             RoyalFlush.makeRoyalFlushIfValid(playerName, allCards),
