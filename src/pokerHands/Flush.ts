@@ -6,7 +6,7 @@ export class Flush extends PokerHand {
     handType: HandType = HandType.FLUSH
     handName: string = 'Flush'
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
     }
 
