@@ -3,12 +3,17 @@ import {Straight} from "./Straight";
 import {Flush} from "./Flush";
 import {StraightFlush} from "./StraightFlush";
 import {RoyalFlush} from "./RoyalFlush";
-import {PokerHand} from "./PokerHand";
+import {PokerHand, HandType} from "./PokerHand";
 import {Ranker} from "../Ranker";
 import {CardArray} from "../CardArray";
 
 
 export class PokerHandFactory {
+    makeHandMatching = new Map<HandType, () => void>([
+        [HandType.ROYAL_FLUSH, () => {}]
+        ]
+    )
+
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
