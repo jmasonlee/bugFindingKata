@@ -13,7 +13,7 @@ export class PokerHandFactory {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
         const possibleHands: PokerHand[] = [
-            this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)),
+            this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards)),
             this.makeHandIfValid(StraightFlush.isStraightFlush(cards), StraightFlush.makeStraightFlushIfValid(playerName, allCards)),
             this.makeHandIfValid(Flush.isFlush(cards.cards), Flush.makeFlushIfValid(playerName, allCards)),
             this.makeHandIfValid(Straight.isStraight(cards), Straight.makeStraightIfValid(playerName,allCards)),
