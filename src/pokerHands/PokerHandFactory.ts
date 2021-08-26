@@ -19,8 +19,8 @@ export class PokerHandFactory {
         }
         {
             let cardsCanMakeHandType = StraightFlush.isStraightFlush(cards);
+            let createHandType = StraightFlush.makeStraightFlushIfValid(playerName, allCards);
             if (cardsCanMakeHandType) {
-                let createHandType = StraightFlush.makeStraightFlushIfValid(playerName, allCards);
                 return createHandType
             }
         }
