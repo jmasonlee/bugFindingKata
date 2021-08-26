@@ -9,8 +9,9 @@ import {CardArray} from "../CardArray";
 
 
 export class PokerHandFactory {
-    makeHandMatching = new Map<HandType, () => void>([
-        [HandType.ROYAL_FLUSH, () => {}]
+    makeHandMatching = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
+        [HandType.ROYAL_FLUSH, (cards, playerName) => {
+            return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}]
         ]
     )
 
