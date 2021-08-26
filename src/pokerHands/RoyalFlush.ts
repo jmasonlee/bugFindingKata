@@ -25,11 +25,4 @@ export class RoyalFlush extends PokerHand{
         return ''
     }
 
-    static makeRoyalFlushIfValid(playerName: string, symbols: string[]): RoyalFlush | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(RoyalFlush.isRoyalFlush(cards)){
-            return new RoyalFlush(playerName, cards)
-        }
-        return null
-    }
 }
