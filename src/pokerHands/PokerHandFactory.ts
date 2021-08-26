@@ -10,13 +10,17 @@ import {CardArray} from "../CardArray";
 export class PokerHandFactory {
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
-        if(RoyalFlush.isRoyalFlush(cards)){
-            return RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)
+        {
+            let b = RoyalFlush.isRoyalFlush(cards);
+            if (b) {
+                return RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)
+            }
         }
-        if(StraightFlush.isStraightFlush(cards)) {
-            return StraightFlush.makeStraightFlushIfValid(playerName, allCards)
+        {
+            if (StraightFlush.isStraightFlush(cards)) {
+                return StraightFlush.makeStraightFlushIfValid(playerName, allCards)
+            }
         }
-
         const possibleHands: PokerHand[] = [
             RoyalFlush.makeRoyalFlushIfValid(playerName, allCards),
             StraightFlush.makeStraightFlushIfValid(playerName, allCards),
