@@ -12,14 +12,6 @@ export class StraightFlush extends PokerHand {
         super(playerName, cards);
     }
 
-    public static makeStraightFlushIfValid(playerName: string, symbols: string[]): StraightFlush | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(StraightFlush.isStraightFlush(cards)) {
-            return new StraightFlush(playerName, cards)
-        }
-        return null
-    }
-
     static isStraightFlush(cards: CardArray) {
         if (Straight.isStraight(cards)) {
             const eligibleForStraight: CardArray = cards.getCardsInSequence()
