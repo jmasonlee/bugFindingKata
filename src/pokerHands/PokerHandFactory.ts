@@ -16,7 +16,7 @@ export class PokerHandFactory {
             this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards)),
             this.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards)),
             this.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards)),
-            this.makeHandIfValid(Straight.isStraight(cards), Straight.makeStraightIfValid(playerName,allCards)),
+            this.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards)),
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
 

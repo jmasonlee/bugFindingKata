@@ -6,7 +6,7 @@ export class Straight extends PokerHand {
     handType: HandType = HandType.STRAIGHT
     handName: string = 'Straight'
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
     }
 
