@@ -15,7 +15,7 @@ export class PokerHandFactory {
         const possibleHands: PokerHand[] = [
             this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)),
             this.makeHandIfValid(StraightFlush.isStraightFlush(cards), StraightFlush.makeStraightFlushIfValid(playerName, allCards)),
-            Flush.makeFlushIfValid(playerName, allCards),
+            this.makeHandIfValid(Flush.isFlush(cards.cards), Flush.makeFlushIfValid(playerName, allCards)),
             Straight.makeStraightIfValid(playerName, allCards),
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
