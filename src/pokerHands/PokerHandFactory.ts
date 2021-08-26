@@ -8,19 +8,13 @@ import {Ranker} from "../Ranker";
 import {CardArray} from "../CardArray";
 
 
-
 export class PokerHandFactory {
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
-        this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), RoyalFlush.makeRoyalFlushIfValid(playerName, allCards));
-        {
-            let cardsCanMakeHandType = StraightFlush.isStraightFlush(cards);
-            let createHandType = StraightFlush.makeStraightFlushIfValid(playerName, allCards);
-            this.makeHandIfValid(cardsCanMakeHandType, createHandType);
-        }
+
         const possibleHands: PokerHand[] = [
-            RoyalFlush.makeRoyalFlushIfValid(playerName, allCards),
-            StraightFlush.makeStraightFlushIfValid(playerName, allCards),
+            this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), RoyalFlush.makeRoyalFlushIfValid(playerName, allCards)),
+            this.makeHandIfValid(StraightFlush.isStraightFlush(cards), StraightFlush.makeStraightFlushIfValid(playerName, allCards)),
             Flush.makeFlushIfValid(playerName, allCards),
             Straight.makeStraightIfValid(playerName, allCards),
             new RepeatedValues(playerName, allCards)
