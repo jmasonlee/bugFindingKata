@@ -18,8 +18,10 @@ export class PokerHandFactory {
             }
         }
         {
-            if (StraightFlush.isStraightFlush(cards)) {
-                return StraightFlush.makeStraightFlushIfValid(playerName, allCards)
+            let cardsCanMakeHandType = StraightFlush.isStraightFlush(cards);
+            if (cardsCanMakeHandType) {
+                let createHandType = StraightFlush.makeStraightFlushIfValid(playerName, allCards);
+                return createHandType
             }
         }
         const possibleHands: PokerHand[] = [
