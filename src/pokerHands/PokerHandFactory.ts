@@ -12,7 +12,9 @@ export class PokerHandFactory {
     private static makeHandMatching: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
         = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
                 [HandType.ROYAL_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}]
+                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
+                [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
             ]
         )
 
@@ -22,7 +24,7 @@ export class PokerHandFactory {
 
         const possibleHands: PokerHand[] = [
             this.makeHandMatching.get(HandType.ROYAL_FLUSH)(cards, playerName),
-            this.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards)),
+            this.makeHandMatching.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
             this.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards)),
             this.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards)),
             new RepeatedValues(playerName, allCards)
