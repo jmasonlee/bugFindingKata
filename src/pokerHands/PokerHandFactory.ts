@@ -3,23 +3,25 @@ import {Straight} from "./Straight";
 import {Flush} from "./Flush";
 import {StraightFlush} from "./StraightFlush";
 import {RoyalFlush} from "./RoyalFlush";
-import {PokerHand, HandType} from "./PokerHand";
+import {HandType, PokerHand} from "./PokerHand";
 import {Ranker} from "../Ranker";
 import {CardArray} from "../CardArray";
 
 
 export class PokerHandFactory {
-    makeHandMatching = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
-        [HandType.ROYAL_FLUSH, (cards, playerName) => {
-            return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}]
-        ]
-    )
+    private static makeHandMatching: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
+        = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
+                [HandType.ROYAL_FLUSH, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}]
+            ]
+        )
 
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
+
         const possibleHands: PokerHand[] = [
-            this.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards)),
+            this.makeHandMatching.get(HandType.ROYAL_FLUSH)(cards, playerName),
             this.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards)),
             this.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards)),
             this.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards)),
