@@ -17,18 +17,19 @@ export class PokerHandFactory {
                     return PokerHandFactory.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
                 [HandType.FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards))}],
+                [HandType.STRAIGHT, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards))}],
             ]
         )
 
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
-
         const possibleHands: PokerHand[] = [
             this.makeHandMatching.get(HandType.ROYAL_FLUSH)(cards, playerName),
             this.makeHandMatching.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
             this.makeHandMatching.get(HandType.FLUSH)(cards, playerName),
-            this.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards)),
+            this.makeHandMatching.get(HandType.STRAIGHT)(cards, playerName),
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
 
