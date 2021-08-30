@@ -45,11 +45,7 @@ export abstract class PokerHand {
         const kickers = [...cards];
         this.removeRankingCards(kickers, rankingCards.cards);
         const numKickers = PokerHand.HAND_SIZE - rankingCards.cards.length;
-        return PokerHand.getKickersWithHighestValue(kickers, numKickers);
-    }
-
-    private static getKickersWithHighestValue(cards: Card[], numKickers: number): Card[] {
-        return cards.sort(compareCards).slice(0, numKickers);
+        return kickers.sort(compareCards).slice(0, numKickers);
     }
 
     private removeRankingCards(cards: Card[], rankingCards: Card[]) {
