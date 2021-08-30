@@ -3,6 +3,7 @@ import {HandType, PokerHand} from "./PokerHand";
 import {Straight} from "./Straight";
 import {Flush} from "./Flush";
 import {CardArray} from "../CardArray";
+import {PokerHandFactory} from "./PokerHandFactory";
 
 export class StraightFlush extends PokerHand {
     handName: string = 'Straight Flush'
@@ -15,7 +16,7 @@ export class StraightFlush extends PokerHand {
     static isStraightFlush(cards: CardArray) {
         if (Straight.isStraight(cards)) {
             const eligibleForStraight: CardArray = cards.getCardsInSequence()
-            return Flush.isFlush(eligibleForStraight.cards)
+            return PokerHandFactory.isFlush(eligibleForStraight.cards)
         }
         return false
     }

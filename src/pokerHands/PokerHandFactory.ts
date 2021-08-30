@@ -6,6 +6,7 @@ import {RoyalFlush} from "./RoyalFlush";
 import {HandType, PokerHand} from "./PokerHand";
 import {Ranker} from "../Ranker";
 import {CardArray} from "../CardArray";
+import {Card} from "../Card";
 
 
 export class PokerHandFactory {
@@ -33,7 +34,7 @@ export class PokerHandFactory {
                 [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
                 [HandType.FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards))}],
+                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isFlush(cards.cards), new Flush(playerName, cards))}],
                 [HandType.STRAIGHT, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards))}],
             ]
@@ -44,5 +45,10 @@ export class PokerHandFactory {
             return createHandType
         }
         return null
+    }
+
+    static isFlush(cards: Card[]) {
+        let occurencesOfSuit: Map<string, number> = new CardArray(cards).countRepeatedSuits()
+        return [...occurencesOfSuit.values()].some(value => 5 <= value)
     }
 }

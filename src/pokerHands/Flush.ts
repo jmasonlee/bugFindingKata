@@ -10,11 +10,6 @@ export class Flush extends PokerHand {
         super(playerName, cards);
     }
 
-    static isFlush(cards: Card[]) {
-        let occurencesOfSuit: Map<string, number> = new CardArray(cards).countRepeatedSuits()
-        return [...occurencesOfSuit.values()].some(value => 5 <= value)
-    }
-
     public getRankingCards(cards: CardArray): CardArray {
         return Flush.getRankingCards(cards)
     }
