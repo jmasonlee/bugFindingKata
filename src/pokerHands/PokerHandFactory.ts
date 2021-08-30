@@ -9,18 +9,6 @@ import {CardArray} from "../CardArray";
 
 
 export class PokerHandFactory {
-    private static makeHandMatching: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
-        = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
-                [HandType.ROYAL_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
-                [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
-                [HandType.FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards))}],
-                [HandType.STRAIGHT, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards))}],
-            ]
-        )
 
     public static createPokerHand(playerName: string, allCards: string[]) {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
@@ -37,6 +25,19 @@ export class PokerHandFactory {
 
         return bestHand
     }
+
+    private static makeHandMatching: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
+        = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
+                [HandType.ROYAL_FLUSH, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
+                [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(StraightFlush.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
+                [HandType.FLUSH, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(Flush.isFlush(cards.cards), new Flush(playerName, cards))}],
+                [HandType.STRAIGHT, (cards, playerName) => {
+                    return PokerHandFactory.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards))}],
+            ]
+        )
 
     private static makeHandIfValid(cardsCanMakeHandType: boolean, createHandType: PokerHand) {
         if (cardsCanMakeHandType) {
