@@ -14,10 +14,10 @@ export class PokerHandFactory {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
         const possibleHands: PokerHand[] = [
-            this.makeHandMatching.get(HandType.ROYAL_FLUSH)(cards, playerName),
-            this.makeHandMatching.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
-            this.makeHandMatching.get(HandType.FLUSH)(cards, playerName),
-            this.makeHandMatching.get(HandType.STRAIGHT)(cards, playerName),
+            this.pokerHandMakers.get(HandType.ROYAL_FLUSH)(cards, playerName),
+            this.pokerHandMakers.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
+            this.pokerHandMakers.get(HandType.FLUSH)(cards, playerName),
+            this.pokerHandMakers.get(HandType.STRAIGHT)(cards, playerName),
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
 
@@ -26,7 +26,7 @@ export class PokerHandFactory {
         return bestHand
     }
 
-    private static makeHandMatching: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
+    private static pokerHandMakers: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
         = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
                 [HandType.ROYAL_FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
