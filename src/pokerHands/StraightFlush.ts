@@ -8,16 +8,8 @@ export class StraightFlush extends PokerHand {
     handName: string = 'Straight Flush'
     handType: HandType = HandType.STRAIGHT_FLUSH
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
-    }
-
-    public static makeStraightFlushIfValid(playerName: string, symbols: string[]): StraightFlush | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(StraightFlush.isStraightFlush(cards)) {
-            return new StraightFlush(playerName, cards)
-        }
-        return null
     }
 
     static isStraightFlush(cards: CardArray) {

@@ -6,7 +6,7 @@ export class Straight extends PokerHand {
     handType: HandType = HandType.STRAIGHT
     handName: string = 'Straight'
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
     }
 
@@ -19,11 +19,4 @@ export class Straight extends PokerHand {
         return new CardArray(cards.getCardsInSequence().cards.slice(0, 5))
     }
 
-    static makeStraightIfValid(playerName: string, symbols: string[]): Straight | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(Straight.isStraight(cards)){
-            return new Straight(playerName, cards)
-        }
-        return null
-    }
 }

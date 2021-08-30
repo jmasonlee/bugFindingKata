@@ -6,7 +6,7 @@ export class RoyalFlush extends PokerHand{
     handName: string = 'Royal Flush'
     handType: HandType = HandType.ROYAL_FLUSH
 
-    private constructor(playerName: string, cards: CardArray) {
+    constructor(playerName: string, cards: CardArray) {
         super(playerName, cards)
     }
 
@@ -25,11 +25,4 @@ export class RoyalFlush extends PokerHand{
         return ''
     }
 
-    static makeRoyalFlushIfValid(playerName: string, symbols: string[]): RoyalFlush | null {
-        let cards:CardArray = CardArray.getCardArrayFromSymbols(symbols)
-        if(RoyalFlush.isRoyalFlush(cards)){
-            return new RoyalFlush(playerName, cards)
-        }
-        return null
-    }
 }
