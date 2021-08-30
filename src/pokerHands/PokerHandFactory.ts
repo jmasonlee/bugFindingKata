@@ -30,7 +30,7 @@ export class PokerHandFactory {
     private static pokerHandMakers: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
         = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
                 [HandType.ROYAL_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(RoyalFlush.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
+                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
                 [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(PokerHandFactory.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
                 [HandType.FLUSH, (cards, playerName) => {
@@ -50,6 +50,13 @@ export class PokerHandFactory {
     static isFlush(cards: Card[]) {
         let occurencesOfSuit: Map<string, number> = new CardArray(cards).countRepeatedSuits()
         return [...occurencesOfSuit.values()].some(value => 5 <= value)
+    }
+
+    static isRoyalFlush(cards: CardArray) {
+        if (PokerHandFactory.isStraightFlush(cards)) {
+            return StraightFlush.getRankingCards(cards).cards[0].value === 14
+        }
+        return false
     }
 
     static isStraightFlush(cards: CardArray) {
