@@ -1,6 +1,7 @@
 import {HandType, PokerHand} from "./PokerHand";
 import {CardArray} from "../CardArray";
 import {StraightFlush} from "./StraightFlush";
+import {PokerHandFactory} from "./PokerHandFactory";
 
 export class RoyalFlush extends PokerHand{
     handName: string = 'Royal Flush'
@@ -11,7 +12,7 @@ export class RoyalFlush extends PokerHand{
     }
 
     static isRoyalFlush(cards: CardArray) {
-        if (StraightFlush.isStraightFlush(cards)) {
+        if (PokerHandFactory.isStraightFlush(cards)) {
             return StraightFlush.getRankingCards(cards).cards[0].value === 14
         }
         return false
