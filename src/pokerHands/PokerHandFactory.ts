@@ -40,13 +40,6 @@ export class PokerHandFactory {
             ]
         )
 
-    private static makeHandIfValid(cardsCanMakeHandType: boolean, createHandType: PokerHand) {
-        if (cardsCanMakeHandType) {
-            return createHandType
-        }
-        return null
-    }
-
     static isFlush(cards: Card[]) {
         let occurencesOfSuit: Map<string, number> = new CardArray(cards).countRepeatedSuits()
         return [...occurencesOfSuit.values()].some(value => 5 <= value)
