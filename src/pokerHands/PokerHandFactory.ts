@@ -30,7 +30,7 @@ export class PokerHandFactory {
     private static pokerHandMakers: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
         = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
                 [HandType.ROYAL_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isRoyalFlush(cards), new RoyalFlush(playerName, cards))}],
+                    return PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null}],
                 [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(PokerHandFactory.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
                 [HandType.FLUSH, (cards, playerName) => {
