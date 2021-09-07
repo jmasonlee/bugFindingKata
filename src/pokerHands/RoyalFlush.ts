@@ -1,7 +1,6 @@
 import {HandType, PokerHand} from "./PokerHand";
 import {CardArray} from "../CardArray";
 import {StraightFlush} from "./StraightFlush";
-import {PokerHandFactory} from "./PokerHandFactory";
 
 export class RoyalFlush extends PokerHand{
     handName: string = 'Royal Flush'
