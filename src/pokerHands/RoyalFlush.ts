@@ -10,13 +10,6 @@ export class RoyalFlush extends PokerHand{
         super(playerName, cards)
     }
 
-    static isRoyalFlush(cards: CardArray) {
-        if (StraightFlush.isStraightFlush(cards)) {
-            return StraightFlush.getRankingCards(cards).cards[0].value === 14
-        }
-        return false
-    }
-
     protected getRankingCards(cards: CardArray): CardArray {
         return StraightFlush.getRankingCards(cards)
     }

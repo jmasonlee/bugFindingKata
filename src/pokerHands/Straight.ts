@@ -1,4 +1,3 @@
-import {Card} from "../Card";
 import {HandType, PokerHand} from "./PokerHand";
 import {CardArray} from "../CardArray";
 
@@ -8,11 +7,6 @@ export class Straight extends PokerHand {
 
     constructor(playerName: string, cards: CardArray) {
         super(playerName, cards);
-    }
-
-    static isStraight(cards: CardArray) {
-        let cardsInSequence = cards.getCardsInSequence()
-        return 5 <= cardsInSequence.cards.length
     }
 
     protected getRankingCards(cards: CardArray): CardArray {
