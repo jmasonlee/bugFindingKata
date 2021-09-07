@@ -36,7 +36,7 @@ export class PokerHandFactory {
                 [HandType.FLUSH, (cards, playerName) => {
                     return PokerHandFactory.makeHandIfValid(PokerHandFactory.isFlush(cards.cards), new Flush(playerName, cards))}],
                 [HandType.STRAIGHT, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(Straight.isStraight(cards), new Straight(playerName,cards))}],
+                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isStraight(cards), new Straight(playerName,cards))}],
             ]
         )
 
@@ -59,8 +59,13 @@ export class PokerHandFactory {
         return false
     }
 
+    static isStraight(cards: CardArray) {
+        let cardsInSequence = cards.getCardsInSequence()
+        return 5 <= cardsInSequence.cards.length
+    }
+
     static isStraightFlush(cards: CardArray) {
-        if (Straight.isStraight(cards)) {
+        if (PokerHandFactory.isStraight(cards)) {
             const eligibleForStraight: CardArray = cards.getCardsInSequence()
             return PokerHandFactory.isFlush(eligibleForStraight.cards)
         }

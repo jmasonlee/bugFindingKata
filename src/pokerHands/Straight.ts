@@ -10,11 +10,6 @@ export class Straight extends PokerHand {
         super(playerName, cards);
     }
 
-    static isStraight(cards: CardArray) {
-        let cardsInSequence = cards.getCardsInSequence()
-        return 5 <= cardsInSequence.cards.length
-    }
-
     protected getRankingCards(cards: CardArray): CardArray {
         return new CardArray(cards.getCardsInSequence().cards.slice(0, 5))
     }
