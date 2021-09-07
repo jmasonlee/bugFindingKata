@@ -32,11 +32,11 @@ export class PokerHandFactory {
                 [HandType.ROYAL_FLUSH, (cards, playerName) => {
                     return PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null}],
                 [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isStraightFlush(cards), new StraightFlush(playerName, cards))}],
+                    return PokerHandFactory.isStraightFlush(cards) ? new StraightFlush(playerName, cards) : null}],
                 [HandType.FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isFlush(cards.cards), new Flush(playerName, cards))}],
+                    return PokerHandFactory.isFlush(cards.cards) ? new Flush(playerName, cards): null}],
                 [HandType.STRAIGHT, (cards, playerName) => {
-                    return PokerHandFactory.makeHandIfValid(PokerHandFactory.isStraight(cards), new Straight(playerName,cards))}],
+                    return PokerHandFactory.isStraight(cards) ? new Straight(playerName,cards): null}],
             ]
         )
 
