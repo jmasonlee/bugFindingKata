@@ -18,7 +18,7 @@ export class PokerHandFactory {
             PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null,
             PokerHandFactory.isStraightFlush(cards) ? new StraightFlush(playerName, cards) : null,
             PokerHandFactory.isFlush(cards.cards) ? new Flush(playerName, cards): null,
-            this.pokerHandMakers.get(HandType.STRAIGHT)(cards, playerName),
+            PokerHandFactory.isStraight(cards) ? new Straight(playerName,cards): null,
             new RepeatedValues(playerName, allCards)
         ].filter(hand => hand)
 
