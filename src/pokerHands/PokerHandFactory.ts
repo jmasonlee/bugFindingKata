@@ -16,7 +16,7 @@ export class PokerHandFactory {
 
         const possibleHands: PokerHand[] = [
             PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null,
-            this.pokerHandMakers.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
+            PokerHandFactory.isStraightFlush(cards) ? new StraightFlush(playerName, cards) : null,
             this.pokerHandMakers.get(HandType.FLUSH)(cards, playerName),
             this.pokerHandMakers.get(HandType.STRAIGHT)(cards, playerName),
             new RepeatedValues(playerName, allCards)
