@@ -27,19 +27,6 @@ export class PokerHandFactory {
         return bestHand
     }
 
-    private static pokerHandMakers: Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>
-        = new Map<HandType, (cards: CardArray, playerName:string) => PokerHand|null>([
-                [HandType.ROYAL_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null}],
-                [HandType.STRAIGHT_FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.isStraightFlush(cards) ? new StraightFlush(playerName, cards) : null}],
-                [HandType.FLUSH, (cards, playerName) => {
-                    return PokerHandFactory.isFlush(cards.cards) ? new Flush(playerName, cards): null}],
-                [HandType.STRAIGHT, (cards, playerName) => {
-                    return PokerHandFactory.isStraight(cards) ? new Straight(playerName,cards): null}],
-            ]
-        )
-
     static isFlush(cards: Card[]) {
         let occurencesOfSuit: Map<string, number> = new CardArray(cards).countRepeatedSuits()
         return [...occurencesOfSuit.values()].some(value => 5 <= value)
