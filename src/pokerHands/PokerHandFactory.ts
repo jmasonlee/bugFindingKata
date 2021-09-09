@@ -3,7 +3,7 @@ import {Straight} from "./Straight";
 import {Flush} from "./Flush";
 import {StraightFlush} from "./StraightFlush";
 import {RoyalFlush} from "./RoyalFlush";
-import {HandType, PokerHand} from "./PokerHand";
+import {PokerHand} from "./PokerHand";
 import {Ranker} from "../Ranker";
 import {CardArray} from "../CardArray";
 import {Card} from "../Card";
