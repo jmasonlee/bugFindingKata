@@ -15,7 +15,7 @@ export class PokerHandFactory {
         let cards:CardArray = CardArray.getCardArrayFromSymbols(allCards)
 
         const possibleHands: PokerHand[] = [
-            this.pokerHandMakers.get(HandType.ROYAL_FLUSH)(cards, playerName),
+            PokerHandFactory.isRoyalFlush(cards)? new RoyalFlush(playerName, cards) : null,
             this.pokerHandMakers.get(HandType.STRAIGHT_FLUSH)(cards, playerName),
             this.pokerHandMakers.get(HandType.FLUSH)(cards, playerName),
             this.pokerHandMakers.get(HandType.STRAIGHT)(cards, playerName),
